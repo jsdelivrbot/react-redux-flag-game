@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import Status from '../containers/status';
+import Gameboard from '../containers/gameboard';
 import TopNavbar from '../containers/navbar';
 
 export default class App extends Component {
@@ -31,7 +31,7 @@ export default class App extends Component {
         <TopNavbar shuffle={this.shuffle}/>
 
         <div className="container flag-container">
-          <Status shuffle={this.shuffle}/>
+          <Gameboard shuffle={this.shuffle}/>
         </div>
       </div>
 

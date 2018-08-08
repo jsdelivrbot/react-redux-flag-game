@@ -1,23 +1,36 @@
 
-
 img {
-	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
 	cursor: pointer;
-  margin-right: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+span {
+	color: lightgray;
+}
+
+.flag {
+	max-height: 350px;
 }
 
 .flag-container {
   text-align: center;
 }
 
+.errorMessage {
+	text-align: center;
+}
+
 img:hover {
  -webkit-box-shadow: 0px 0px 30px 0px cyan !important;
 -moz-box-shadow:    0px 0px 30px 0px cyan !important;
 box-shadow:         0px 0px 30px 0px cyan !important;
+
 }
 
 .map {
+	width: 100%;
   margin-right: 10% !important;
   box-shadow: none;
 }
@@ -32,6 +45,11 @@ box-shadow:         0px 0px 30px 0px cyan !important;
   text-align: center;
 }
 
+.progressLabel {
+	margin-top: 500px;
+}
+
 .flag-row {
-  margin-bottom: 20px !important;
+	margin-bottom: 30px;
+	height: 350px;
 }

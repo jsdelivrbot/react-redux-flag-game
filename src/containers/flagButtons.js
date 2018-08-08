@@ -2,80 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { incrementPositionInQueue } from '../actions/index';
+import Flipcard from '../containers/flipcard';
 
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 export class FlagButtons extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      errorMessageIsHidden: true,
-      errorMessage: ""
-    }
-  }
-
-  toggleHidden () {
-    this.setState({
-      isHidden: !this.state.errorMessageIsHidden
-    })
-  }
-
-  setErrorMessage (message) {
-    this.setState({
-      errorMessage: message
-    })
-  }
-    // if (parseInt(guess) === gameState.correctAnswer){
-    //   //go to the next country in the subRegion list and increment progress counter
-    //   document.getElementById("errorMessage").classList.remove("show");
-    //   setProgressBar();
-    //   setUpGameBoard();
-    // } else {
-    //   //error statement
-    //   document.getElementById("errorMessage").classList.add("show");
-    //   document.getElementById("errorMessage").innerHTML = "You clicked " + nameCodeMap[gameState.choices[guess - 1]] + ". Try again.";
-    //   console.log(gameState.choices);
-    // }
-
-
-  wrongCountryMessage = () => (
-    <div >
-          { this.props.wrongCountryMessage }
-      </div>
-  )
-
-  handleFlagClick = (event) => {
-    let guess = event.target.id;
-
-    let {
-      CountryList,
-      PositionInQueue,
-      incrementPositionInQueue
-     } = this.props;
-
-    if (guess === CountryList[PositionInQueue]){
-      let maxPosition = CountryList.length;
-      incrementPositionInQueue(PositionInQueue, maxPosition);
-    } else {
-      console.log('incorrect flag was clicked')
-      event.preventDefault();
-    }
-  }
 
   render() {
+
+    let shown = {
+      display: this.props.ErrorMessageIsShown ? "block" : "none"
+    };
+
+    let guess = this.props.Guess;
 
     let { shuffledChoices,
       ActiveSubRegion
      } = this.props;
 
-    let flagComponents = shuffledChoices.map((ele, i) => {
+    let flags = shuffledChoices.map((ele, i) => {
       let choiceName = shuffledChoices[i];
       let choiceData = ActiveSubRegion.countries.filter( ele => ele.name === choiceName )[0];
       return (
           <img
+            className="flag"
             src={ require('../img/' + choiceData.flag) }
-            onClick={ this.handleFlagClick }
             alt="flag button"
             id={ choiceData.name }
             >
@@ -83,26 +34,65 @@ export class FlagButtons extends Component {
       )
     });
 
+    let emblems = shuffledChoices.map((ele, i) => {
+      let choiceName = shuffledChoices[i];
+      let choiceData = ActiveSubRegion.countries.filter( ele => ele.name === choiceName)[0];
+      return (
+        <img
+          className="flag"
+         src={ require('../img/' + choiceData.emblem) }
+         alt="emblem"
+         id={ choiceData.name + " emblem"}
+          >
+        </img>
+      )
+    })
+
     return (
-        <Container>
+      <div className="flag-row">
+          <h4 className="errorMessage" style={ shown }>{ "That's the flag of " + guess + ". Try again."}</h4>
 
           <Row className="flag-row">
             <Col xs="6">
-              { flagComponents[0] }
+              <Flipcard
+                front={ flags[0] }
+                back={ emblems[0] }
+                countryName={ shuffledChoices[0] }
+                toggleError={this.toggleError}
+                setGuess={this.setGuess}
+                ></Flipcard>
             </Col>
             <Col xs="6">
-              { flagComponents[1] }
+              <Flipcard
+                front={ flags[1] }
+                back={ emblems[1] }
+                countryName={ shuffledChoices[1] }
+                toggleError={this.toggleError}
+                setGuess={this.setGuess}
+                ></Flipcard>
             </Col>
           </Row>
           <Row className="flag-row">
             <Col xs="6">
-              { flagComponents[2] }
+              <Flipcard
+                front={ flags[2] }
+                back={ emblems[2] }
+                countryName={ shuffledChoices[2] }
+                toggleError={this.toggleError}
+                setGuess={this.setGuess}
+                ></Flipcard>
             </Col>
             <Col xs="6">
-              { flagComponents[3] }
+              <Flipcard
+                front={ flags[3] }
+                back={ emblems[3] }
+                countryName={ shuffledChoices[3] }
+                toggleError={this.toggleError}
+                setGuess={this.setGuess}
+                ></Flipcard>
             </Col>
           </Row>
-      </Container>
+        </div>
     )
   }
 }
@@ -111,13 +101,17 @@ function mapStateToProps({
   ActiveRegion,
   ActiveSubRegion,
   PositionInQueue,
-  CountryList
+  CountryList,
+  ErrorMessageIsShown,
+  Guess
 }){
   return {
     ActiveRegion,
     ActiveSubRegion,
     PositionInQueue,
-    CountryList
+    CountryList,
+    ErrorMessageIsShown,
+    Guess
   }
 }
 

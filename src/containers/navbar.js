@@ -9,7 +9,6 @@ import {
 
 import { bindActionCreators } from 'redux';
 import {
-  Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
@@ -20,14 +19,6 @@ import {
   DropdownItem } from 'reactstrap';
 
 export class TopNavbar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
 
   getRandomRegionIdx(regionsLength){
     return Math.floor(Math.random() * Math.floor(regionsLength));
@@ -96,11 +87,6 @@ export class TopNavbar extends Component {
     }
   }
 
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
 
   componentWillMount(){
 
@@ -124,11 +110,7 @@ export class TopNavbar extends Component {
       return (
         <div>
           <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">Learn Flags</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-
-
+            <NavbarBrand href="/">Learn Flags <span>built with React and Redux</span></NavbarBrand>
 
               <Nav className="ml-auto" navbar>
 
@@ -151,7 +133,6 @@ export class TopNavbar extends Component {
                 </UncontrolledDropdown>
               </Nav>
 
-            </Collapse>
           </Navbar>
         </div>
       )

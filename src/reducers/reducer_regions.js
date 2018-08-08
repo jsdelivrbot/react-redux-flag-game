@@ -822,12 +822,12 @@ export default function(){
           orthographic: 'nauru-orthographic.svg' },
         { name: 'the Northern Mariana Islands (USA)',
           flag: 'northern-mariana-islands-flag.svg',
-          emblem: 'northern-mariana-islands-emblem.svg',
+          emblem: 'northern-mariana-islands-emblem.png',
           orthographic: 'northern-mariana-islands-orthographic.svg' },
         { name: 'Palau',
           flag: 'palau-flag.svg',
           emblem: 'palau-emblem.svg',
-          orthographic: 'palau-orthographic.svg' }
+          orthographic: 'palau-orthographic.png' }
         ]},
     {
       name: 'Polynesia',

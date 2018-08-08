@@ -10,7 +10,7 @@ export default class RegionProgress extends Component {
 
     return (
       <div>
-          <h3>Progress within region</h3>
+          <h3 className="progressLabel">Progress within region</h3>
           <div className="text-center">{ percentage }%</div>
           <Progress value={ percentage } />
       </div>

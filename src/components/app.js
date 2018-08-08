@@ -29,10 +29,7 @@ export default class App extends Component {
     return (
       <div>
         <TopNavbar shuffle={this.shuffle}/>
-
-        <div className="container flag-container">
-          <Gameboard shuffle={this.shuffle}/>
-        </div>
+        <Gameboard shuffle={this.shuffle}/>
       </div>
 
     )

@@ -7,9 +7,6 @@ import RegionProgress from '../components/regionProgress';
 import FlagButtons from './flagButtons';
 
 class Gameboard extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   getNewChoices = (CountryList, PositionInQueue, shuffle) => {
     let countryQueueMinusCorrectCountry = CountryList.slice(0, PositionInQueue).concat(CountryList.slice(PositionInQueue + 1));
@@ -38,10 +35,11 @@ class Gameboard extends Component {
 
     return (
       <div >
-        <h3>
+        <h3 className="question">
           { CountryList.length > 0 ? "Which flag belongs to " + CountryList[PositionInQueue] + "?" : "Please choose a subregion."}
         </h3>
 
+      <div className="container">
         <FlagButtons
           shuffledChoices={ flagButtonData }
           ActiveSubRegion={ ActiveSubRegion }
@@ -57,6 +55,7 @@ class Gameboard extends Component {
           CountryList={ CountryList }
           PositionInQueue={ PositionInQueue }
           ></Location>
+      </div>
       </div>
     )
   }

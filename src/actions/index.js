@@ -35,10 +35,23 @@ export function changeSubRegion(idx){
 }
 
 export function incrementPositionInQueue(position, maxPosition = 0){
-
   let newPosition = (position + 1) % maxPosition;
   return {
     type: 'POSITION_INCREMENTED',
     payload: newPosition
+  }
+}
+
+export function toggleErrorMessage(){
+  return {
+    type: 'TOGGLED_ERROR_MESSAGE',
+    payload: null
+  }
+}
+
+export function setGuess(guess){
+  return {
+    type: 'SET_GUESS',
+    payload: guess
   }
 }
